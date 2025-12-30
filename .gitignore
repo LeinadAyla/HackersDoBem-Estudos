@@ -1,3 +1,15 @@
-backup_estudos/
-*.tmp
+# Arquivos do Sistema
 .DS_Store
+Thumbs.db
+# Logs e Temporários
+*.log
+*.tmp
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.env
+# Backups Locais
+backup_estudos/
+# IDEs
+.vscode/
