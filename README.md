@@ -13,15 +13,19 @@ Repositório dedicado ao armazenamento de notas de aula, laboratórios práticos
 
 ### [Módulo 1] - Princípios de Segurança e Engenharia Social
 Focado no fator humano e inteligência de ameaças.
-- **Aula 3:** Inteligência de Ameaças (OSINT) e análise de superfície de ataque.
 - **Aula 4 (Lab Prático):** `analisador_phishing.py` -> Script Python que detecta gatilhos psicológicos em mensagens fraudulentas.
 
 ### [Módulo 3] - Defesa Cibernética e Resposta a Incidentes
 Focado em análise de logs, monitoramento e perícia digital.
 - **Análise Forense de SQL Injection:**
   - **Lab Prático:** Exploração controlada em ambiente Docker (DVWA).
-  - **Documentação:** [Laudo Pericial Jurídico](modulo3-analise-logs-sqli/poc_sqli.md) detalhando IoCs (Indicadores de Comprometimento), status HTTP e anomalias de tráfego.
-  - **Identificação:** Decodificação de *URL Encoding* (`%27`, `%3D`) para fins de compliance e evidência criminal.
+  - **Documentação:** [Laudo Pericial Jurídico](modulo3-analise-logs-sqli/poc_sqli.md) detalhando IoCs, status HTTP e anomalias de tráfego.
+
+### [Módulo 4] - Gestão de Identidade e Criptografia
+Focado em controle de acesso, proteção de sistemas e auditoria de credenciais.
+- **Auditoria de Senhas (John the Ripper):** - [Relatório de Auditoria](modulo4-autenticacao-e-criptografia/auditoria_senhas_john.md) demonstrando a quebra de hashes offline em algoritmos legados (MD5).
+- **Hardening de Sistema:** Ativação e análise do **SELinux** para controle de acesso obrigatório (MAC).
+- **Tooling:** `analisador_shadow.py` -> Script de auditoria que valida a integridade e permissões do arquivo `/etc/shadow`.
 
 ---
 
@@ -29,23 +33,15 @@ Focado em análise de logs, monitoramento e perícia digital.
 
 Desenvolvi ferramentas para otimizar o fluxo de trabalho e gerenciamento do laboratório:
 
-1.  **`reset_lab.sh`**: Script Bash avançado para automação de infraestrutura.
-    - Realiza o *kill* de processos em portas específicas (80/TCP).
-    - Reinicia containers Docker de forma limpa.
-    - Garante a integridade do ambiente antes de cada perícia.
-2.  **`gerar_aula.sh`**: Automação da estrutura de diretórios para manter o repositório organizado e escalável.
+1. **`reset_lab.sh`**: Script Bash para automação de infraestrutura e limpeza de portas (80/TCP).
+2. **`gerar_aula.sh`**: Script de automação para padronização da estrutura de diretórios do repositório.
 
 ---
 
 ## ⚡ Como Executar os Laboratórios
 
-### Monitorar Logs em Tempo Real:
+### 1. Auditoria de Senhas (Módulo 4):
 ```bash
-./reset_lab.sh
-
-Rodar Analisador de Phishing (Python):
-Bash
-
-python3 modulo1-teoria-e-labs/analisador_phishing.py
-
-Este repositório serve como portfólio técnico para demonstração de habilidades em Red Team (Exploração), Blue Team (Defesa) e Compliance Digital.
+cd modulo4-autenticacao-e-criptografia
+python3 analisador_shadow.py
+john --format=crypt credencial.txt
